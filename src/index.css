@@ -1,0 +1,171 @@
+/* URL IMPORTS (SUCH AS FONT IMPORTS) SHOULD BE KEPT ABOVE TAILWIND IMPORTS - DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED - DO NOT DELETE THIS COMMENT */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL - DO NOT DELETE THIS COMMENT */
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Fix iOS Safari 100vh bug */
+        height: -webkit-fill-available;
+    }
+
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #fafbfd;
+        color: #1e293b;
+        line-height: 1.7;
+        letter-spacing: -0.01em;
+        /* Smooth scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
+        min-height: -webkit-fill-available;
+    }
+
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+        background-color: #bfdbfe;
+        color: #1e3a8a;
+    }
+}
+
+
+@layer components {
+
+    /* Glass card effect */
+    .glass-card {
+        @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft;
+    }
+
+    .glass-nav {
+        @apply bg-white/80 backdrop-blur-2xl border-b border-gray-100/50;
+    }
+
+    /* Modern card with hover lift */
+    .card-hover {
+        @apply bg-white rounded-3xl border border-gray-100/80 shadow-soft transition-all duration-500 ease-out hover:shadow-soft-lg hover:-translate-y-1 hover:border-brand-200/50;
+    }
+
+    /* Soft gradient section dividers */
+    .section-light {
+        @apply bg-gradient-to-b from-white to-cream;
+    }
+
+    .section-cream {
+        @apply bg-gradient-to-b from-cream to-cream-dark;
+    }
+
+    /* Badge/chip component */
+    .badge {
+        @apply inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide;
+    }
+
+    .badge-blue {
+        @apply badge bg-brand-50 text-brand-700 border border-brand-100;
+    }
+
+    .badge-orange {
+        @apply badge bg-accent-50 text-accent-700 border border-accent-200;
+    }
+
+    /* Section heading pattern */
+    .section-title {
+        @apply text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-navy-800 leading-[1.15];
+    }
+
+    .section-subtitle {
+        @apply text-lg md:text-xl text-navy-400 leading-relaxed max-w-2xl;
+    }
+}
+
+@layer utilities {
+    .text-gradient-brand {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-brand-400;
+    }
+
+    .text-gradient-warm {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-400 via-accent-500 to-orange-500;
+    }
+
+    /* Smooth transitions */
+    .transition-smooth {
+        @apply transition-all duration-500 ease-[cubic-bezier(0.23, 1, 0.32, 1)];
+    }
+
+    /* Image cover with nice ratio */
+    .img-cover {
+        @apply w-full h-full object-cover;
+    }
+
+    /* Animate items */
+    .animate-fade-up {
+        animation: fadeUp 0.7s ease-out forwards;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Page transition */
+    .page-transition {
+        animation: pageEnter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    @keyframes pageEnter {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
