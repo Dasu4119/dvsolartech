@@ -46,8 +46,11 @@ export function Footer() {
               {[
                 { name: 'Home', href: '/' },
                 { name: 'About Us', href: '/about' },
+                { name: 'Services', href: '/services' },
                 { name: 'Our Products', href: '/products' },
                 { name: 'Our Projects', href: '/projects' },
+                { name: 'Solar Calculator', href: '/calculator' },
+                { name: 'Blog & Guides', href: '/blog' },
                 { name: 'Contact Us', href: '/contact' },
               ].map((item) => (
                 <li key={item.name}>

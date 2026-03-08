@@ -8,6 +8,9 @@ import { AboutPage } from './pages/AboutPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ContactPage } from './pages/ContactPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { CalculatorPage } from './pages/CalculatorPage';
+import { BlogPage } from './pages/BlogPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 import { PageTransition } from './components/utils/PageTransition';
 
@@ -26,8 +29,11 @@ export function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/services" element={<ServicesPage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/calculator" element={<CalculatorPage />} />
+              <Route path="/blog" element={<BlogPage />} />
               <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </PageTransition>

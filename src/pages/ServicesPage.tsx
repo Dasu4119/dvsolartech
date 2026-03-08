@@ -1,0 +1,267 @@
+import React from 'react';
+import {
+  Home,
+  Building2,
+  Wrench,
+  Zap,
+  Droplets,
+  ArrowRight,
+  CheckCircle,
+  Phone,
+  MessageCircle,
+} from 'lucide-react';
+import { Button } from '../components/ui/Button';
+import { Link } from 'react-router-dom';
+
+const services = [
+  {
+    icon: Home,
+    title: 'Residential Solar',
+    subtitle: 'For Homes & Villas',
+    color: 'from-brand-500 to-brand-600',
+    iconBg: 'bg-brand-50',
+    iconColor: 'text-brand-600',
+    description:
+      'Transform your home into a solar powerhouse. Reduce your monthly electricity bills by 60–90% with a custom-designed rooftop solar system tailored to your household needs.',
+    benefits: [
+      'Custom system design for your roof',
+      'Net metering assistance & registration',
+      'Government subsidy application support',
+      '25-year panel warranty',
+      'AMC & maintenance plans available',
+    ],
+    capacity: '1kW – 10kW',
+    cta: 'Get Home Solar Quote',
+  },
+  {
+    icon: Building2,
+    title: 'Commercial Solar',
+    subtitle: 'For Businesses & Industries',
+    color: 'from-accent-500 to-orange-500',
+    iconBg: 'bg-accent-50',
+    iconColor: 'text-accent-600',
+    description:
+      'Slash your business electricity costs with large-scale commercial solar systems. Ideal for factories, schools, offices, hospitals, and commercial complexes across Andhra Pradesh.',
+    benefits: [
+      'High-capacity systems from 10kW–500kW',
+      'Accelerated depreciation benefits (40%)',
+      'ROI within 3–5 years',
+      'Dedicated project manager',
+      'Grid-tied & hybrid options',
+    ],
+    capacity: '10kW – 500kW+',
+    cta: 'Get Business Quote',
+  },
+  {
+    icon: Wrench,
+    title: 'Solar Maintenance',
+    subtitle: 'AMC & Repair Services',
+    color: 'from-emerald-500 to-green-600',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-emerald-600',
+    description:
+      'Ensure peak performance of your solar investment with our comprehensive Annual Maintenance Contracts (AMC). Regular cleaning, inspection, and repair services to maximize output.',
+    benefits: [
+      'Bi-annual panel cleaning & inspection',
+      'Inverter health check & monitoring',
+      'Performance report & analysis',
+      'Emergency breakdown support',
+      'Spare parts replacement',
+    ],
+    capacity: 'All System Sizes',
+    cta: 'Book AMC Service',
+  },
+  {
+    icon: Zap,
+    title: 'Net Metering Assistance',
+    subtitle: 'APSPDCL / APEPDCL Approval',
+    color: 'from-purple-500 to-indigo-600',
+    iconBg: 'bg-purple-50',
+    iconColor: 'text-purple-600',
+    description:
+      'We handle the entire net metering process from application to approval with APSPDCL / APEPDCL. Sell surplus solar power back to the grid and earn electricity credits.',
+    benefits: [
+      'End-to-end net metering documentation',
+      'Liason with DISCOM offices',
+      'Bidirectional meter installation',
+      'Monthly generation monitoring',
+      'Billing dispute resolution support',
+    ],
+    capacity: 'All Grid-Tied Systems',
+    cta: 'Get Net Metering Help',
+  },
+  {
+    icon: Droplets,
+    title: 'Solar Water Pumps',
+    subtitle: 'Agricultural & Industrial',
+    color: 'from-cyan-500 to-blue-600',
+    iconBg: 'bg-cyan-50',
+    iconColor: 'text-cyan-600',
+    description:
+      'Power your irrigation needs with solar water pumps. Eliminate diesel costs and power outage problems with reliable, government-subsidized solar pump systems for farms across AP.',
+    benefits: [
+      'PM-KUSUM scheme subsidy (up to 90%)',
+      'AC & DC pump solutions',
+      'Remote monitoring with mobile app',
+      'No electricity bill for pumping',
+      'Suitable for borewells & open wells',
+    ],
+    capacity: '1HP – 10HP',
+    cta: 'Get Pump Quote',
+  },
+];
+
+export function ServicesPage() {
+  return (
+    <div className="min-h-screen bg-cream">
+      {/* Header Banner */}
+      <section className="relative bg-navy-900 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.07]">
+          <div className="absolute top-10 right-10 w-[400px] h-[400px] bg-brand-500 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-20 w-[300px] h-[300px] bg-accent-400 rounded-full blur-[80px]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="badge bg-accent-500/15 text-accent-400 border-accent-500/25 mb-6">
+            What We Offer
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight">
+            Our Solar Services
+          </h1>
+          <p className="text-lg md:text-xl text-navy-300 max-w-2xl mx-auto leading-relaxed">
+            End-to-end solar solutions for homes, businesses, and farms across Andhra Pradesh.
+            From consultation to installation and beyond.
+          </p>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-10">
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className={`bg-white rounded-3xl shadow-soft border border-gray-100/80 overflow-hidden hover:shadow-soft-lg transition-all duration-500 hover:-translate-y-0.5`}
+              >
+                <div className={`grid grid-cols-1 lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
+                  {/* Info */}
+                  <div className="p-8 md:p-12">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className={`${service.iconBg} p-4 rounded-2xl`}>
+                        <service.icon className={`w-8 h-8 ${service.iconColor}`} />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl md:text-3xl font-extrabold text-navy-800">
+                          {service.title}
+                        </h2>
+                        <p className="text-sm text-navy-400 font-medium">{service.subtitle}</p>
+                      </div>
+                    </div>
+
+                    <p className="text-navy-500 leading-relaxed mb-7 text-base md:text-lg">
+                      {service.description}
+                    </p>
+
+                    <ul className="space-y-3 mb-8">
+                      {service.benefits.map((b, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-navy-600 text-sm">{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-col sm:flex-row gap-3 items-start">
+                      <Link to="/contact">
+                        <Button
+                          variant="primary"
+                          rightIcon={<ArrowRight className="w-4 h-4" />}
+                        >
+                          {service.cta}
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="secondary"
+                        leftIcon={<MessageCircle className="w-4 h-4" />}
+                        onClick={() => window.open('https://wa.me/919182928154', '_blank')}
+                      >
+                        WhatsApp Us
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Visual Card */}
+                  <div className={`bg-gradient-to-br ${service.color} p-8 md:p-12 flex flex-col justify-between text-white`}>
+                    <div>
+                      <p className="text-white/60 text-sm font-semibold uppercase tracking-wider mb-2">
+                        System Capacity
+                      </p>
+                      <p className="text-3xl md:text-4xl font-extrabold mb-8">{service.capacity}</p>
+
+                      <div className="space-y-4">
+                        <div className="bg-white/10 rounded-2xl p-5">
+                          <p className="text-white/70 text-xs mb-1">Average Bill Savings</p>
+                          <p className="text-2xl font-bold">60% – 90%</p>
+                        </div>
+                        <div className="bg-white/10 rounded-2xl p-5">
+                          <p className="text-white/70 text-xs mb-1">Panel Warranty</p>
+                          <p className="text-2xl font-bold">25 Years</p>
+                        </div>
+                        <div className="bg-white/10 rounded-2xl p-5">
+                          <p className="text-white/70 text-xs mb-1">Typical Payback Period</p>
+                          <p className="text-2xl font-bold">3 – 5 Years</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-8 pt-8 border-t border-white/20 flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-white/70" />
+                      <a href="tel:+919182928154" className="text-white hover:text-white/80 transition-colors font-semibold">
+                        +91 91829 28154
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-400/10 rounded-full blur-[80px]" />
+        <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
+            Not Sure Which Service You Need?
+          </h2>
+          <p className="text-xl text-blue-100/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Our solar experts will visit your site for free, assess your needs, and recommend
+            the perfect solution — at absolutely no cost.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link to="/contact">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="bg-white text-brand-700 hover:bg-gray-50 font-bold shadow-soft-lg border-0"
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+              >
+                Book Free Site Survey
+              </Button>
+            </Link>
+            <Button
+              variant="secondary"
+              size="lg"
+              className="!bg-[#25D366] !border-[#25D366] !text-white hover:!bg-[#128C7E] font-bold border-0"
+              leftIcon={<MessageCircle className="w-5 h-5" />}
+              onClick={() => window.open('https://wa.me/919182928154', '_blank')}
+            >
+              Chat on WhatsApp
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -21,8 +21,11 @@ export function Header() {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
     { name: 'Products', href: '/products' },
     { name: 'Projects', href: '/projects' },
+    { name: 'Calculator', href: '/calculator' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -84,16 +87,20 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Button
-              variant="primary"
-              size="sm"
-              leftIcon={<MessageCircle className="w-4 h-4" />}
-              onClick={() =>
-                window.open('https://wa.me/919182928154', '_blank')
-              }
+            <a
+              href="https://wa.me/919182928154"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy-500 hover:text-[#25D366] transition-colors p-2"
+              title="WhatsApp Us"
             >
-              WhatsApp Us
-            </Button>
+              <MessageCircle className="w-5 h-5" />
+            </a>
+            <Link to="/contact">
+              <Button variant="primary" size="sm">
+                Get Free Quote
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
