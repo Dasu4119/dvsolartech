@@ -125,7 +125,7 @@ function InlineCalculator() {
     const kw = Math.max(1, Math.min(10, Math.ceil(units / 120)));
     const subsidyMap: Record<number, number> = { 1: 30000, 2: 60000 };
     const subsidy = kw >= 3 ? 78000 : (subsidyMap[kw] ?? 78000);
-    const cost = kw * 55000 - subsidy;
+    const cost = kw * 72000 - subsidy;
     const savings = Math.round(kw * 120 * 12 * tariff);
     setResult({ kw, cost, subsidy, savings });
   };

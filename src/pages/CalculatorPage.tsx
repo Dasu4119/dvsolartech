@@ -51,8 +51,8 @@ function calculate(monthlyBill: number, _district: string, roofArea: number): Ca
   const systemKw = Math.max(1, Math.ceil(monthlyUnits / 120));
   const cappedKw = Math.min(systemKw, 10);
 
-  // Cost: ~₹55,000 per kW installed (Tier-1 equipment)
-  const costPerKw = 55000;
+  // Cost: ~₹72,000 per kW installed (Tier-1 equipment)
+  const costPerKw = 72000;
   const costBeforeSubsidy = cappedKw * costPerKw;
   const subsidy = getSubsidy(cappedKw);
   const netCost = Math.max(0, costBeforeSubsidy - subsidy);
