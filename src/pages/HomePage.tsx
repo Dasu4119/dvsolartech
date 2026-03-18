@@ -33,6 +33,8 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
+
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -185,7 +187,14 @@ function InlineCalculator() {
 // ─── PAGE ────────────────────────────────────────────────────────────────────
 
 export function HomePage() {
+  usePageSEO({
+    title: 'DV Solar Tech | #1 Solar Installer in Andhra Pradesh',
+    description: 'Cut your electricity bill by 60-90% with DV Solar Tech. Premium Waaree, Adani, Tata Power solar panels + Sungrow inverters. Govt subsidy up to ₹78,000. Free site survey across Andhra Pradesh.',
+    keywords: 'solar panels Andhra Pradesh, solar installation Vijayawada, solar system Guntur, Waaree panels AP, government solar subsidy, PM Surya Ghar AP',
+    canonical: '/',
+  });
   return (
+
     <div className="flex flex-col min-h-screen">
 
       {/* ═══════════════ HERO ═══════════════ */}

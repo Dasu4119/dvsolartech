@@ -12,8 +12,15 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 export function ContactPage() {
+  usePageSEO({
+    title: 'Contact DV Solar Tech | Free Solar Consultation Andhra Pradesh',
+    description: 'Get a free solar consultation and site survey from DV Solar Tech. Call +91 91829 28154, WhatsApp us, or fill out the form. We respond within 2 hours. Mon-Sat 9AM-7PM.',
+    keywords: 'contact DV Solar Tech, solar consultation AP, free solar survey, solar installer phone number',
+    canonical: '/contact',
+  });
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');

@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 const panelBrands = [
   {
@@ -111,6 +112,12 @@ const accessories = [
 ];
 
 export function ProductsPage() {
+  usePageSEO({
+    title: 'Solar Products | Waaree, Adani, Tata, Sungrow | DV Solar Tech',
+    description: 'Buy Tier-1 solar panels (Waaree, Adani, Tata Power, Reone) and inverters (Sungrow, Havells, GoodWe) from DV Solar Tech. Only genuine products with full manufacturer warranty.',
+    keywords: 'Waaree solar panels, Adani solar, Tata Power solar, Sungrow inverter, solar panels Andhra Pradesh, buy solar products AP',
+    canonical: '/products',
+  });
   return (
     <div className="min-h-screen bg-cream">
       {/* ═══ Header Banner ═══ */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Clock, ArrowRight, Tag, Search } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 const articles = [
   {
@@ -87,6 +88,12 @@ const articles = [
 const categories = ['All Articles', 'Pricing Guide', 'Government Schemes', 'For Homeowners', 'Solar Basics', 'Net Metering', 'Product Reviews'];
 
 export function BlogPage() {
+  usePageSEO({
+    title: 'Solar Blog & Guides | DV Solar Tech | Andhra Pradesh Solar News',
+    description: 'Expert solar guides and articles — solar pricing, PM Surya Ghar subsidy, net metering process, panel brand comparisons, and more. All written for Andhra Pradesh customers.',
+    keywords: 'solar blog India, solar guides AP, PM Surya Ghar guide, solar subsidy 2025, net metering AP guide',
+    canonical: '/blog',
+  });
   const [activeCategory, setActiveCategory] = useState('All Articles');
   const [searchQuery, setSearchQuery] = useState('');
 

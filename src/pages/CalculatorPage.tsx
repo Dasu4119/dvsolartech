@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 const districts = [
   'Anantapur', 'Chittoor', 'East Godavari', 'Guntur', 'Krishna', 'Kurnool',
@@ -85,6 +86,12 @@ function getSavingsComparison(annualSavings: number): { item: string; emoji: str
 }
 
 export function CalculatorPage() {
+  usePageSEO({
+    title: 'Solar Savings Calculator | Free Tool | DV Solar Tech Andhra Pradesh',
+    description: 'Calculate your solar savings with our free tool. Enter your monthly electricity bill and get recommended system size, government subsidy amount, and full ROI breakdown for Andhra Pradesh.',
+    keywords: 'solar calculator Andhra Pradesh, solar savings calculator, PM Surya Ghar subsidy calculator, solar ROI calculator AP',
+    canonical: '/calculator',
+  });
   const [monthlyBill, setMonthlyBill] = useState<string>('');
   const [directKw, setDirectKw] = useState<string>('');
   const [district, setDistrict] = useState<string>('');

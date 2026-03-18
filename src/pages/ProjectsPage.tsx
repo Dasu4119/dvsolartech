@@ -2,6 +2,7 @@ import React from 'react';
 import { MapPin, ArrowRight, CheckCircle, IndianRupee, TrendingDown } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 
 const projects = [
@@ -37,6 +38,12 @@ const projects = [
     location: 'Vizag, AP',
     type: 'Residential',
     image: '/images/project3.jpg',
+    components: [
+      '6 × Waaree 540W Mono PERC Panels',
+      'Sungrow SG3.0RS 3kW On-Grid Inverter',
+      'DC/AC Earthing + Surge Protection',
+      'Net-metering ready — APEPDCL approved',
+    ],
   },
   {
     id: 4,
@@ -44,6 +51,12 @@ const projects = [
     location: 'Nellore, AP',
     type: 'Hybrid',
     image: '/images/project4.jpg',
+    components: [
+      '20 × Tata Power 500W Panels',
+      'GoodWe 10kW Hybrid Inverter',
+      '15kWh Lithium Battery Bank',
+      'Smart energy management system',
+    ],
   },
   {
     id: 5,
@@ -51,6 +64,12 @@ const projects = [
     location: 'Kurnool, AP',
     type: 'Agricultural',
     image: '/images/project5.jpg',
+    components: [
+      '8 × Waaree 540W Panels',
+      'Grundfos 5HP Solar Pump',
+      'MPPT Solar Pump Controller',
+      'Drip irrigation integration',
+    ],
   },
   {
     id: 6,
@@ -58,6 +77,12 @@ const projects = [
     location: 'Kakinada, AP',
     type: 'Industrial',
     image: '/images/project6.jpg',
+    components: [
+      '90 × Adani 560W Bifacial Panels',
+      '2 × Sungrow SG25CX 25kW Inverters',
+      'ACDB/DCDB + HT protection relay',
+      'Remote monitoring system installed',
+    ],
   },
   {
     id: 7,
@@ -65,6 +90,12 @@ const projects = [
     location: 'Tirupati, AP',
     type: 'Commercial',
     image: '/images/project7.jfif',
+    components: [
+      '28 × Reone 540W Panels',
+      'Solis 15kW Three-Phase Inverter',
+      'GI mounting structure + DC cabling',
+      'Net-metering with APSPDCL',
+    ],
   },
 ];
 
@@ -79,7 +110,14 @@ const typeColors: Record<string, string> = {
 };
 
 export function ProjectsPage() {
+  usePageSEO({
+    title: 'Solar Projects | Case Studies in Vijayawada, Guntur, Vizag | DV Solar Tech',
+    description: 'See real solar installations by DV Solar Tech across Andhra Pradesh — Vijayawada, Guntur, Visakhapatnam. Before/after bill comparisons, system specs and brand details.',
+    keywords: 'solar installation Vijayawada, solar project Guntur, rooftop solar AP, solar case study Andhra Pradesh, Waaree panels installation',
+    canonical: '/projects',
+  });
   return (
+
     <div className="min-h-screen bg-cream">
       {/* Header Banner */}
       <section className="relative bg-navy-900 text-white py-24 overflow-hidden">
@@ -267,49 +305,49 @@ export function ProjectsPage() {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl shadow-soft hover:shadow-soft-xl transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-3xl shadow-soft hover:shadow-soft-xl transition-all duration-500 hover:-translate-y-1 cursor-pointer"
               >
+                {/* Image */}
                 <img
                   src={project.image}
                   alt={project.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-72 object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/30 to-transparent" />
 
-                {/* Default card info */}
-                <div className={`absolute bottom-0 left-0 p-7 text-white transition-all duration-500 ${'components' in project && project.components ? 'group-hover:opacity-0 group-hover:translate-y-2' : ''}`}>
-                  <span
-                    className={`${typeColors[project.type] || 'bg-brand-500'} text-xs font-semibold px-3.5 py-1.5 rounded-full mb-3 inline-block shadow-md`}
-                  >
-                    {project.type}
-                  </span>
-                  <h3 className="text-xl font-bold mb-1.5">{project.title}</h3>
-                  <p className="text-navy-300 text-sm flex items-center">
-                    <MapPin className="w-3.5 h-3.5 mr-1.5" />
+                {/* Always-visible dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/95 via-navy-900/50 to-transparent" />
+
+                {/* Card content pinned to bottom */}
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                  {/* Badge + Title row */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`${typeColors[project.type] || 'bg-brand-500'} text-xs font-bold px-3 py-1 rounded-full shadow-md`}>
+                      {project.type}
+                    </span>
+                    <h3 className="text-base font-extrabold leading-tight">{project.title}</h3>
+                  </div>
+                  {/* Location */}
+                  <p className="text-navy-300 text-xs flex items-center mb-3">
+                    <MapPin className="w-3 h-3 mr-1 flex-shrink-0" />
                     {project.location}
                   </p>
+                  {/* Components */}
+                  {'components' in project && project.components && (
+                    <>
+                      <p className="text-accent-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">System Components</p>
+                      <ul className="space-y-1">
+                        {(project.components as string[]).map((c: string, i: number) => (
+                          <li key={i} className="flex items-start gap-1.5 text-xs text-navy-200">
+                            <span className="text-accent-400 flex-shrink-0 mt-0.5">✔</span>
+                            {c}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
-
-                {/* Components slide-up panel (only for projects that have them) */}
-                {'components' in project && project.components && (
-                  <div className="absolute inset-x-0 bottom-0 bg-navy-900/95 backdrop-blur-sm p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className={`${typeColors[project.type] || 'bg-brand-500'} text-xs font-semibold px-3 py-1 rounded-full`}>{project.type}</span>
-                      <h3 className="text-white font-bold text-sm">{project.title}</h3>
-                    </div>
-                    <p className="text-accent-400 text-xs font-semibold uppercase tracking-wider mb-2">System Components</p>
-                    <ul className="space-y-1.5">
-                      {project.components.map((c: string, i: number) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-navy-200">
-                          <span className="text-accent-400 mt-0.5 flex-shrink-0">✔</span>
-                          {c}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </div>
             ))}
           </div>

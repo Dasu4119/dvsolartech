@@ -19,14 +19,15 @@ export function Header() {
   }, [location.pathname]);
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Products', href: '/products' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Calculator', href: '/calculator' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/', highlight: false },
+    { name: 'About', href: '/about', highlight: false },
+    { name: 'Services', href: '/services', highlight: false },
+    { name: 'Products', href: '/products', highlight: false },
+    { name: 'Projects', href: '/projects', highlight: false },
+    { name: 'Calculator', href: '/calculator', highlight: false },
+    { name: '⭐ Subsidy', href: '/surya-ghar', highlight: true },
+    { name: 'Blog', href: '/blog', highlight: false },
+    { name: 'Contact', href: '/contact', highlight: false },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -75,10 +76,15 @@ export function Header() {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isActive(item.href)
-                  ? 'text-brand-600 bg-brand-50'
-                  : 'text-navy-600 hover:text-brand-600 hover:bg-gray-50'
-                  }`}
+                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  item.highlight
+                    ? isActive(item.href)
+                      ? 'text-accent-600 bg-accent-100 ring-1 ring-accent-300'
+                      : 'text-accent-600 bg-accent-50 hover:bg-accent-100 ring-1 ring-accent-200'
+                    : isActive(item.href)
+                    ? 'text-brand-600 bg-brand-50'
+                    : 'text-navy-600 hover:text-brand-600 hover:bg-gray-50'
+                }`}
               >
                 {item.name}
               </Link>
@@ -129,10 +135,15 @@ export function Header() {
             <Link
               key={item.name}
               to={item.href}
-              className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-[15px] font-medium transition-all duration-200 ${isActive(item.href)
-                ? 'bg-brand-50 text-brand-600'
-                : 'text-navy-700 hover:bg-gray-50'
-                }`}
+              className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-[15px] font-medium transition-all duration-200 ${
+                item.highlight
+                  ? isActive(item.href)
+                    ? 'bg-accent-50 text-accent-600'
+                    : 'text-accent-600 bg-accent-50/60 hover:bg-accent-100'
+                  : isActive(item.href)
+                  ? 'bg-brand-50 text-brand-600'
+                  : 'text-navy-700 hover:bg-gray-50'
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}

@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 const steps = [
   {
@@ -72,6 +73,12 @@ function getSubsidy(kw: number) {
 }
 
 export function SuryaGharPage() {
+  usePageSEO({
+    title: 'PM Surya Ghar Scheme AP | Get ₹78,000 Solar Subsidy | DV Solar Tech',
+    description: 'Claim up to ₹78,000 government subsidy under PM Surya Ghar Muft Bijli Yojana. DV Solar Tech handles the entire 8-step NREDCAP process for you. Free consultation for Andhra Pradesh.',
+    keywords: 'PM Surya Ghar Andhra Pradesh, solar subsidy AP 78000, NREDCAP solar subsidy, free electricity scheme AP, solar yojana 2025',
+    canonical: '/surya-ghar',
+  });
   const [kw, setKw] = useState(3);
   const subsidy = getSubsidy(kw);
   const fmt = (n: number) => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(n);

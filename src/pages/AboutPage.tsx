@@ -13,8 +13,15 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { usePageSEO } from '../hooks/usePageSEO';
 
 export function AboutPage() {
+  usePageSEO({
+    title: 'About DV Solar Tech | Solar Company Andhra Pradesh',
+    description: 'Meet the team behind DV Solar Tech — AP trusted solar installer. Founded by M. Ranaveeranjaneyulu, with 5+ years of solar experience and 500+ installations across Andhra Pradesh.',
+    keywords: 'about DV Solar Tech, solar team Andhra Pradesh, NREDCAP empanelled solar',
+    canonical: '/about',
+  });
   return (
     <div className="min-h-screen bg-cream">
       {/* Header Banner */}
@@ -195,7 +202,7 @@ export function AboutPage() {
               },
               {
                 initials: 'PM',
-                name: 'Poojitha Madamanchi',
+                name: 'Pradhama Poojitha Madamanchi',
                 role: 'Customer Relations',
                 bio: 'Your go-to person for quotations, government subsidy paperwork, and after-sales support.',
                 gradient: 'from-purple-500 to-purple-700',
