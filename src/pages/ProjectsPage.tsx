@@ -10,6 +10,12 @@ const projects = [
     location: 'Vijayawada, AP',
     type: 'Residential',
     image: '/images/project1.jpg',
+    components: [
+      '10 × Waaree 540W Mono PERC Panels',
+      'Sungrow SG5.0RS On-Grid Inverter',
+      'DC/AC Earthing + Lightning Arrestor',
+      'Net-metering ready — APEPDCL approved',
+    ],
   },
   {
     id: 2,
@@ -17,6 +23,12 @@ const projects = [
     location: 'Guntur, AP',
     type: 'Commercial',
     image: '/images/project2.jpg',
+    components: [
+      '37 × Adani 540W Bifacial Panels',
+      'Solis 20kW Three-Phase On-Grid Inverter',
+      'ACDB / DCDB with surge protection',
+      'GI rooftop mounting structure',
+    ],
   },
   {
     id: 3,
@@ -54,6 +66,8 @@ const projects = [
     image: '/images/project7.jfif',
   },
 ];
+
+type Project = typeof projects[0];
 
 const typeColors: Record<string, string> = {
   Residential: 'bg-brand-500',
@@ -98,10 +112,14 @@ export function ProjectsPage() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/25 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-7 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/30 to-transparent" />
+
+                {/* Default card info */}
+                <div className={`absolute bottom-0 left-0 p-7 text-white transition-all duration-500 ${'components' in project && project.components ? 'group-hover:opacity-0 group-hover:translate-y-2' : ''}`}>
                   <span
                     className={`${typeColors[project.type] || 'bg-brand-500'} text-xs font-semibold px-3.5 py-1.5 rounded-full mb-3 inline-block shadow-md`}
                   >
@@ -113,6 +131,25 @@ export function ProjectsPage() {
                     {project.location}
                   </p>
                 </div>
+
+                {/* Components slide-up panel (only for projects that have them) */}
+                {'components' in project && project.components && (
+                  <div className="absolute inset-x-0 bottom-0 bg-navy-900/95 backdrop-blur-sm p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`${typeColors[project.type] || 'bg-brand-500'} text-xs font-semibold px-3 py-1 rounded-full`}>{project.type}</span>
+                      <h3 className="text-white font-bold text-sm">{project.title}</h3>
+                    </div>
+                    <p className="text-accent-400 text-xs font-semibold uppercase tracking-wider mb-2">System Components</p>
+                    <ul className="space-y-1.5">
+                      {project.components.map((c: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2 text-xs text-navy-200">
+                          <span className="text-accent-400 mt-0.5 flex-shrink-0">✔</span>
+                          {c}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
           </div>

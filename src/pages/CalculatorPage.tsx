@@ -43,16 +43,25 @@ interface CalcResult {
   monthlyUnitsGenerated: number;
 }
 
-function calculate(monthlyBill: number, _district: string, roofArea: number): CalcResult {
-  // Tariff assumption: ₹7 per unit average in AP
-  const tariff = 7;
-  const monthlyUnits = monthlyBill / tariff;
-  // Each kW produces ~120 units/month in AP (avg 4 peak sun hours)
-  const systemKw = Math.max(1, Math.ceil(monthlyUnits / 120));
-  const cappedKw = Math.min(systemKw, 10);
-
-  // Cost: ~₹72,000 per kW installed (Tier-1 equipment)
+function calculate(monthlyBill: number, _district: string, _roofArea: number, directKw?: number): CalcResult {
+  // Cost: ₹72,000 per kW installed (Tier-1 equipment)
   const costPerKw = 72000;
+  const tariff = 7;
+
+  let cappedKw: number;
+  let monthlyUnits: number;
+
+  if (directKw && directKw > 0) {
+    // Direct kW entry: cost = kW × ₹72,000
+    cappedKw = Math.min(directKw, 10);
+    monthlyUnits = cappedKw * 120; // assume full generation covers bill
+  } else {
+    // Bill-based: derive system size from monthly bill
+    monthlyUnits = monthlyBill / tariff;
+    const systemKw = Math.max(1, Math.ceil(monthlyUnits / 120));
+    cappedKw = Math.min(systemKw, 10);
+  }
+
   const costBeforeSubsidy = cappedKw * costPerKw;
   const subsidy = getSubsidy(cappedKw);
   const netCost = Math.max(0, costBeforeSubsidy - subsidy);
@@ -60,23 +69,40 @@ function calculate(monthlyBill: number, _district: string, roofArea: number): Ca
   // Savings: units generated × tariff
   const monthlyUnitsGenerated = cappedKw * 120;
   const annualSavings = Math.min(monthlyUnitsGenerated, monthlyUnits) * 12 * tariff;
-  const paybackYears = parseFloat((netCost / annualSavings).toFixed(1));
+  const paybackYears = annualSavings > 0 ? parseFloat((netCost / annualSavings).toFixed(1)) : 0;
 
   return { systemKw: cappedKw, costBeforeSubsidy, subsidy, netCost, annualSavings, paybackYears, monthlyUnitsGenerated };
 }
 
+// Maps annual savings to a relatable comparison item
+function getSavingsComparison(annualSavings: number): { item: string; emoji: string } {
+  if (annualSavings >= 100000) return { item: "a child's full year of college tuition", emoji: '🎓' };
+  if (annualSavings >= 60000)  return { item: 'a full family vacation to Goa', emoji: '✈️' };
+  if (annualSavings >= 36000)  return { item: 'a brand-new two-wheeler', emoji: '🛵' };
+  if (annualSavings >= 18000)  return { item: 'a premium smartphone', emoji: '📱' };
+  if (annualSavings >= 10000)  return { item: '10 months of grocery bills', emoji: '🛒' };
+  return { item: 'a new appliance for your home', emoji: '🏠' };
+}
+
 export function CalculatorPage() {
   const [monthlyBill, setMonthlyBill] = useState<string>('');
+  const [directKw, setDirectKw] = useState<string>('');
   const [district, setDistrict] = useState<string>('');
   const [roofArea, setRoofArea] = useState<string>('');
   const [result, setResult] = useState<CalcResult | null>(null);
 
+  // Live preview: show cost as user types kW (no submit needed)
+  const kwNum = parseFloat(directKw);
+  const livePreviewCost = kwNum > 0 ? kwNum * 72000 : null;
+
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
-    const bill = parseFloat(monthlyBill);
-    const area = parseFloat(roofArea);
-    if (!bill || !district || !area) return;
-    setResult(calculate(bill, district, area));
+    const bill = parseFloat(monthlyBill) || 0;
+    const area = parseFloat(roofArea) || 0;
+    const kw = parseFloat(directKw);
+    if (!district) return;
+    if (!kw && !bill) return;
+    setResult(calculate(bill, district, area, kw > 0 ? kw : undefined));
   };
 
   const fmt = (n: number) =>
@@ -122,13 +148,50 @@ export function CalculatorPage() {
               </div>
 
               <form onSubmit={handleCalculate} className="space-y-6">
+                {/* Direct kW Input */}
+                <div>
+                  <label className="block text-sm font-semibold text-navy-700 mb-2.5">
+                    System Size (kW) — Direct Entry
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="10"
+                    step="0.5"
+                    value={directKw}
+                    onChange={e => setDirectKw(e.target.value)}
+                    className="w-full px-5 py-3.5 bg-cream border-2 border-accent-400 rounded-2xl focus:ring-2 focus:ring-accent-500/30 focus:border-accent-500 outline-none transition-all text-sm text-navy-700 placeholder:text-navy-300"
+                    placeholder="e.g. 3  →  3 × ₹72,000 = ₹2,16,000"
+                    id="direct-kw"
+                   />
+                  {/* Live preview */}
+                  {livePreviewCost !== null ? (
+                    <div className="mt-2 flex items-center gap-2 bg-accent-50 border border-accent-200 rounded-xl px-4 py-2.5 animate-fade-up">
+                      <span className="text-lg">⚡</span>
+                      <p className="text-sm font-semibold text-accent-700">
+                        {kwNum} kW × ₹72,000 = <span className="text-accent-600 font-extrabold">₹{new Intl.NumberFormat('en-IN').format(livePreviewCost)}</span>
+                        <span className="text-accent-500 font-normal"> (before subsidy)</span>
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-navy-400 mt-1.5">1 kW = ₹72,000 &nbsp;|&nbsp; e.g. 3 kW = ₹2,16,000 (before subsidy)</p>
+                  )}
+                </div>
+
+                {/* OR Divider */}
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 h-px bg-gray-200" />
+                  <span className="text-xs font-bold text-navy-400 bg-white px-3 py-1 rounded-full border border-gray-200">OR estimate from bill</span>
+                  <div className="flex-1 h-px bg-gray-200" />
+                </div>
+
+                {/* Bill-based Input */}
                 <div>
                   <label className="block text-sm font-semibold text-navy-700 mb-2.5">
                     Monthly Electricity Bill (₹)
                   </label>
                   <input
                     type="number"
-                    required
                     min="100"
                     value={monthlyBill}
                     onChange={e => setMonthlyBill(e.target.value)}
@@ -257,6 +320,20 @@ export function CalculatorPage() {
                       <p className="text-3xl font-extrabold">₹{fmt(result.annualSavings * 25)}</p>
                     </div>
                   </div>
+
+                  {/* Personalized savings comparison banner */}
+                  {(() => {
+                    const { item, emoji } = getSavingsComparison(result.annualSavings);
+                    return (
+                      <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl p-5 text-white">
+                        <p className="text-white/75 text-xs font-semibold uppercase tracking-wider mb-1">Your savings in perspective</p>
+                        <p className="text-lg font-bold leading-snug">
+                          {emoji} You could save <span className="text-emerald-100 font-extrabold">₹{fmt(result.annualSavings)}/year</span> — enough to buy {item} every year!
+                        </p>
+                        <p className="text-white/60 text-xs mt-1">Over 25 years, that's ₹{fmt(result.annualSavings * 25)} back in your pocket. 🌱</p>
+                      </div>
+                    );
+                  })()}
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link to="/contact" className="flex-1">

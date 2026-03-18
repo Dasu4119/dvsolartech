@@ -108,6 +108,8 @@ export function AboutPage() {
               <img
                 src="/images/project5.jpg"
                 alt="Solar Engineers at work"
+                loading="lazy"
+                decoding="async"
                 className="relative rounded-3xl shadow-soft-xl w-full"
               />
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-brand-500 to-brand-600 text-white p-8 rounded-2xl shadow-soft-xl hidden md:block">
@@ -153,6 +155,65 @@ export function AboutPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="badge-blue mb-4">The People Behind the Panels</span>
+            <h2 className="section-title mb-4">Meet Our Team</h2>
+            <p className="section-subtitle mx-auto">
+              Solar is a 25-year commitment. Here's who you're trusting with your home.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                initials: 'MR',
+                name: 'Madamanchi Ranaveeranjaneyulu',
+                role: 'Founder & Director',
+                bio: 'Visionary behind DV Solar Tech, driving clean energy adoption across AP since 2019.',
+                gradient: 'from-brand-500 to-brand-700',
+              },
+              {
+                initials: 'MD',
+                name: 'Madamanchi Dasanjaneyulu',
+                role: 'Lead Engineer',
+                bio: 'Expert in system design and Tier-1 equipment commissioning for residential and commercial plants.',
+                gradient: 'from-accent-500 to-accent-700',
+              },
+              {
+                initials: 'PJ',
+                name: 'Pullagora Jai Sagar',
+                role: 'Installation Head',
+                bio: 'Leads our on-ground crew, ensuring every panel is installed to the highest safety standards.',
+                gradient: 'from-emerald-500 to-emerald-700',
+              },
+              {
+                initials: 'PM',
+                name: 'Poojitha Madamanchi',
+                role: 'Customer Relations',
+                bio: 'Your go-to person for quotations, government subsidy paperwork, and after-sales support.',
+                gradient: 'from-purple-500 to-purple-700',
+              },
+            ].map((member, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-3xl border border-gray-100/80 shadow-soft hover:shadow-soft-md hover:-translate-y-1 transition-all duration-300 p-7 text-center group"
+              >
+                {/* Initials avatar — replace with <img> when real photos are available */}
+                <div className={`bg-gradient-to-br ${member.gradient} w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:scale-105 transition-transform duration-300`}>
+                  <span className="text-2xl font-extrabold text-white tracking-wide">{member.initials}</span>
+                </div>
+                <h3 className="font-extrabold text-navy-800 text-base mb-0.5">{member.name}</h3>
+                <p className="text-xs font-semibold text-brand-600 uppercase tracking-wider mb-3">{member.role}</p>
+                <p className="text-sm text-navy-400 leading-relaxed">{member.bio}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
