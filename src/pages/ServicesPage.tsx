@@ -228,6 +228,78 @@ export function ServicesPage() {
         </div>
       </section>
 
+      {/* ── Monitoring App ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            {/* Text */}
+            <div>
+              <span className="badge bg-emerald-100 text-emerald-700 border-emerald-200 mb-6">
+                Live Monitoring
+              </span>
+              <h2 className="section-title mb-5">
+                We Don't Just Install and Vanish
+              </h2>
+              <p className="text-navy-500 leading-relaxed mb-8 text-lg">
+                Every system we install comes with access to a real-time solar monitoring
+                dashboard. Track your daily generation, live power output, and savings —
+                directly from your phone.
+              </p>
+
+              <ul className="space-y-4 mb-8">
+                {[
+                  { icon: '☀️', label: 'Daily Generation', detail: 'See exactly how many kWh your panels produced today' },
+                  { icon: '⚡', label: 'Live Power Output', detail: 'Real-time kW reading updated every few seconds' },
+                  { icon: '💰', label: 'Savings Tracker', detail: 'Rupees saved today, this month, and all-time' },
+                  { icon: '🔔', label: 'Fault Alerts', detail: 'Push notifications if your inverter detects a problem' },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-4 bg-cream rounded-2xl p-4 border border-gray-100/80">
+                    <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <p className="font-bold text-navy-800 text-sm">{item.label}</p>
+                      <p className="text-xs text-navy-500 mt-0.5">{item.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-xs text-navy-400 mb-5">
+                Monitoring via <strong>Sungrow iSolarCloud</strong>, <strong>GoodWe SEMS</strong>, or <strong>SolarEdge</strong> app depending on your inverter. Completely free to use.
+              </p>
+
+              <a
+                href="https://wa.me/919182928154?text=Hi! I want to know more about solar monitoring setup."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="btn-primary">
+                  Ask About Monitoring Setup →
+                </button>
+              </a>
+            </div>
+
+            {/* Phone mockup */}
+            <div className="relative flex justify-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-500/10 to-emerald-500/10 rounded-[3rem] blur-[60px]" />
+              <div className="relative bg-navy-900 rounded-[2.5rem] p-3 shadow-soft-xl ring-4 ring-white/10 max-w-[320px] w-full">
+                <img
+                  src="/images/monitoring-app.png"
+                  alt="DV Solar real-time monitoring app showing daily generation, live power, and savings"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full rounded-[2rem]"
+                />
+              </div>
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -right-4 bg-emerald-500 text-white rounded-2xl px-4 py-3 shadow-soft-xl">
+                <p className="text-xs font-semibold opacity-80">Today's Generation</p>
+                <p className="text-xl font-extrabold">18.4 kWh</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-400/10 rounded-full blur-[80px]" />

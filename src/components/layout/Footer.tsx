@@ -50,6 +50,7 @@ export function Footer() {
                 { name: 'Our Products', href: '/products' },
                 { name: 'Our Projects', href: '/projects' },
                 { name: 'Solar Calculator', href: '/calculator' },
+                { name: '⭐ PM Surya Ghar Subsidy', href: '/surya-ghar' },
                 { name: 'Blog & Guides', href: '/blog' },
                 { name: 'Contact Us', href: '/contact' },
               ].map((item) => (

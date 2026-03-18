@@ -11,6 +11,7 @@ import { ContactPage } from './pages/ContactPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { CalculatorPage } from './pages/CalculatorPage';
 import { BlogPage } from './pages/BlogPage';
+import { SuryaGharPage } from './pages/SuryaGharPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 import { PageTransition } from './components/utils/PageTransition';
 
@@ -34,6 +35,7 @@ export function App() {
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/calculator" element={<CalculatorPage />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/surya-ghar" element={<SuryaGharPage />} />
               <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </PageTransition>

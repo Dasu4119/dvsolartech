@@ -1,7 +1,8 @@
 import React from 'react';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, CheckCircle, IndianRupee, TrendingDown } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+
 
 const projects = [
   {
@@ -97,6 +98,165 @@ export function ProjectsPage() {
             From residential homes to large-scale commercial setups, DV Solar
             Tech has successfully completed projects across all of AP.
           </p>
+        </div>
+      </section>
+
+      {/* ── Case Studies ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="badge bg-accent-500/15 text-accent-600 border-accent-500/25 mb-4">Deep Dives</span>
+            <h2 className="section-title mb-4">Case Studies</h2>
+            <p className="section-subtitle mx-auto">
+              Real installations. Real bill reductions. Real brand-name components you can verify.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Case Study 1 — Vijayawada Residential */}
+            <div className="bg-cream rounded-3xl border border-gray-100/80 shadow-soft overflow-hidden hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-500">
+              <div className="relative">
+                <img
+                  src="/images/project1.jpg"
+                  alt="5kW Residential Solar — Vijayawada"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-56 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 flex gap-2">
+                  <span className="bg-brand-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">Residential</span>
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                    <MapPin className="w-3 h-3" /> Vijayawada, AP
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-7">
+                <h3 className="text-xl font-extrabold text-navy-800 mb-1">5kW Residential System</h3>
+
+                {/* Brand callout */}
+                <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 mb-5">
+                  <span className="text-amber-500 text-lg">⭐</span>
+                  <p className="text-sm font-semibold text-amber-800">
+                    10 × Waaree 540W Mono PERC &nbsp;+&nbsp; Sungrow SG5.0RS Inverter
+                  </p>
+                </div>
+
+                {/* Before / After Bill */}
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                  <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
+                    <p className="text-xs text-red-500 font-semibold uppercase tracking-wider mb-1">Old Bill / Month</p>
+                    <p className="text-3xl font-extrabold text-red-600">₹4,000</p>
+                    <p className="text-xs text-red-400 mt-1">Before solar</p>
+                  </div>
+                  <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 text-center">
+                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wider mb-1">New Bill / Month</p>
+                    <p className="text-3xl font-extrabold text-emerald-600">₹300</p>
+                    <p className="text-xs text-emerald-400 mt-1">After solar ✅</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 bg-emerald-500 rounded-xl px-4 py-2.5 mb-5">
+                  <TrendingDown className="w-4 h-4 text-white" />
+                  <p className="text-sm font-bold text-white">₹3,700 saved every month — ₹44,400/year!</p>
+                </div>
+
+                {/* Components */}
+                <p className="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2">System Components</p>
+                <ul className="space-y-1.5 mb-6">
+                  {[
+                    '10 × Waaree 540W Mono PERC Panels (Tier-1)',
+                    'Sungrow SG5.0RS 5kW On-Grid String Inverter',
+                    'DC / AC Earthing + Lightning Arrestor',
+                    'Net-metering registered — APEPDCL approved',
+                  ].map((c, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-navy-600">
+                      <CheckCircle className="w-4 h-4 text-brand-500 flex-shrink-0 mt-0.5" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link to="/contact">
+                  <Button variant="primary" fullWidth rightIcon={<ArrowRight className="w-4 h-4" />}>
+                    Get a Similar System
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Case Study 2 — Guntur Commercial */}
+            <div className="bg-cream rounded-3xl border border-gray-100/80 shadow-soft overflow-hidden hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-500">
+              <div className="relative">
+                <img
+                  src="/images/project2.jpg"
+                  alt="20kW Commercial Solar — Guntur"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-56 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 flex gap-2">
+                  <span className="bg-accent-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">Commercial</span>
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                    <MapPin className="w-3 h-3" /> Guntur, AP
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-7">
+                <h3 className="text-xl font-extrabold text-navy-800 mb-1">20kW Commercial Rooftop</h3>
+
+                {/* Brand callout */}
+                <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 mb-5">
+                  <span className="text-amber-500 text-lg">⭐</span>
+                  <p className="text-sm font-semibold text-amber-800">
+                    37 × Adani 540W Bifacial &nbsp;+&nbsp; Solis 20kW 3-Phase Inverter
+                  </p>
+                </div>
+
+                {/* Before / After Bill */}
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                  <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
+                    <p className="text-xs text-red-500 font-semibold uppercase tracking-wider mb-1">Old Bill / Month</p>
+                    <p className="text-3xl font-extrabold text-red-600">₹28,000</p>
+                    <p className="text-xs text-red-400 mt-1">Before solar</p>
+                  </div>
+                  <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 text-center">
+                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wider mb-1">New Bill / Month</p>
+                    <p className="text-3xl font-extrabold text-emerald-600">₹3,200</p>
+                    <p className="text-xs text-emerald-400 mt-1">After solar ✅</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 bg-emerald-500 rounded-xl px-4 py-2.5 mb-5">
+                  <TrendingDown className="w-4 h-4 text-white" />
+                  <p className="text-sm font-bold text-white">₹24,800 saved every month — ₹2,97,600/year!</p>
+                </div>
+
+                {/* Components */}
+                <p className="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2">System Components</p>
+                <ul className="space-y-1.5 mb-6">
+                  {[
+                    '37 × Adani 540W Bifacial Mono PERC (Tier-1)',
+                    'Solis 20kW Three-Phase On-Grid Inverter',
+                    'ACDB / DCDB with Surge Protection',
+                    'GI Rooftop Mounting Structure + DC Cabling',
+                  ].map((c, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-navy-600">
+                      <CheckCircle className="w-4 h-4 text-accent-500 flex-shrink-0 mt-0.5" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link to="/contact">
+                  <Button variant="primary" fullWidth rightIcon={<ArrowRight className="w-4 h-4" />}>
+                    Get a Commercial Quote
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
