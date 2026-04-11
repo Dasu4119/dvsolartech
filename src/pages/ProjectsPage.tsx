@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, ArrowRight, CheckCircle, IndianRupee, TrendingDown } from 'lucide-react';
+import { MapPin, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { usePageSEO } from '../hooks/usePageSEO';
@@ -98,8 +98,6 @@ const projects = [
     ],
   },
 ];
-
-type Project = typeof projects[0];
 
 const typeColors: Record<string, string> = {
   Residential: 'bg-brand-500',

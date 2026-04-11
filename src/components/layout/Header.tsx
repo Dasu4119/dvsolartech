@@ -71,7 +71,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="Primary navigation">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -112,7 +112,11 @@ export function Header() {
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
             <button
+              type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-controls="mobile-menu"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
               className="text-navy-700 hover:text-brand-500 focus:outline-none p-2.5 rounded-xl hover:bg-gray-50 transition-all duration-200"
             >
               {isMenuOpen ? (
@@ -127,7 +131,8 @@ export function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        id="mobile-menu"
+        className={`lg:hidden transition-all duration-500 ease-out ${isMenuOpen ? 'max-h-[calc(100vh-72px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'
           }`}
       >
         <div className="bg-white/95 backdrop-blur-2xl border-t border-gray-100 px-4 pt-3 pb-6 space-y-1">

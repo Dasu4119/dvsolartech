@@ -15,14 +15,10 @@ import { SuryaGharPage } from './pages/SuryaGharPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 import { PageTransition } from './components/utils/PageTransition';
 
-function ScrollToTopComponent() {
-  return <ScrollToTop />;
-}
-
 export function App() {
   return (
     <Router>
-      <ScrollToTopComponent />
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen font-sans text-deepblue-text bg-cream">
         <Header />
         <main className="flex-grow">

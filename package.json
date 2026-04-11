@@ -1,8 +1,9 @@
 {
-  "name": "magic-patterns-vite-template",
+  "name": "dvsolartech",
   "version": "0.0.1",
   "private": true,
   "type": "module",
+  "description": "DV Solar Tech website for solar product sales and lead generation.",
   "scripts": {
     "dev": "npx vite",
     "build": "npx vite build",
@@ -29,7 +30,7 @@
     "eslint-plugin-react-refresh": "^0.4.1",
     "postcss": "latest",
     "tailwindcss": "3.4.17",
-    "typescript": "^5.5.4",
-    "vite": "^5.2.0"
+    "typescript": "^5.1.6",
+    "vite": "^8.0.8"
   }
 }

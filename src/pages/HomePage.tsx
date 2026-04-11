@@ -24,7 +24,6 @@ import {
   Ruler,
   HardHat,
   PlugZap,
-  Handshake,
   Quote,
   Calculator,
   BookOpen,
