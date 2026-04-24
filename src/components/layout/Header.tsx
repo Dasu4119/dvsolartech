@@ -132,10 +132,10 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        className={`lg:hidden transition-all duration-500 ease-out overflow-y-auto ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        className={`lg:hidden fixed left-0 right-0 top-[72px] transition-all duration-500 ease-out overflow-y-auto ${isMenuOpen ? 'max-h-[calc(100vh-72px)] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
           }`}
       >
-        <div className="bg-white/95 backdrop-blur-2xl border-t border-gray-100 px-4 pt-3 pb-6 space-y-1">
+        <div className="bg-white/95 backdrop-blur-2xl border-t border-gray-100 px-4 pt-3 pb-20 space-y-1">
           {navigation.map((item) => (
             <Link
               key={item.name}
